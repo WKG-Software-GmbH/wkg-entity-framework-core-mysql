@@ -33,11 +33,12 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedAllSources>true</EmbedAllSources>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wkg" Version="[7.1.12397-rc,7.2.0-rc)" />
-        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[7.1.12428,7.2.0-rc)" />
+        <PackageReference Include="Wkg" Version="[7.1.12437-rc,7.2.0-rc)" />
+        <PackageReference Include="Wkg.EntityFrameworkCore" Version="7.1.12472" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.7" />
     </ItemGroup>
 
