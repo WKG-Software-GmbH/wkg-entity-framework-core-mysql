@@ -7,11 +7,21 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 
+/// <summary>
+/// Represents an <see cref="IResultColumnBuilder"/> for a result column of a stored procedure in a MySql database.
+/// </summary>
 public interface IMySqlResultColumnBuilder : IResultColumnBuilder
 {
+    /// <summary>
+    /// The <see cref="MySqlDbType"/> of the column, if configured.
+    /// </summary>
     MySqlDbType? MySqlDbType { get; }
 }
-
+/// <summary>
+/// The builder for a result column of stored procedure in a MySql database.
+/// </summary>
+/// <typeparam name="TResult">The type of the result collection.</typeparam>
+/// <typeparam name="TProperty">The type of the property to be mapped.</typeparam>
 public class MySqlResultColumnBuilder<TResult, TProperty>
     : ResultColumnBuilder<TResult, TProperty, MySqlResultColumnBuilder<TResult, TProperty>>, IMySqlResultColumnBuilder
 {
@@ -25,6 +35,11 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
     {
     }
 
+    /// <summary>
+    /// Sets the <see cref="MySqlDbType"/> of the column.
+    /// </summary>
+    /// <param name="dbType">The <see cref="MySqlDbType"/> to set.</param>
+    /// <returns>The column builder for fluent configuration.</returns>
     public MySqlResultColumnBuilder<TResult, TProperty> HasDbType(MySqlDbType dbType)
     {
         if (MySqlDbType is not null)
@@ -35,6 +50,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
         return this;
     }
 
+    /// <inheritdoc/>
     public override MySqlResultColumnBuilder<TResult, TProperty> RequiresConversion<TColumn>(Expression<Func<TColumn, TProperty>> conversion)
     {
         ParameterExpression columnExpression = conversion.Parameters[0];
@@ -43,6 +59,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
         return base.RequiresConversion(conversion);
     }
 
+    /// <inheritdoc/>
     protected override void AssertIsValid()
     {
         base.AssertIsValid();
@@ -50,12 +67,14 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
         _ = MySqlDbType ?? Context.ThrowHelper.Throw<ArgumentNullException, MySqlDbType>("Attempted to build column with no valid DB Type!", nameof(MySqlDbType));
     }
 
+    /// <inheritdoc/>
     protected override void AttemptAutoConfiguration() =>
         MySqlDbType ??= _typeMap.GetDbTypeOrDefault(Context.ResultProperty.PropertyType);
 
     internal void SetCompilerHint(MySqlResultColumnCompilerHint hint) => 
         CompilerHint = hint;
 
+    /// <inheritdoc/>
     protected override IResultColumnCompiler Build() =>
         new MySqlResultColumnCompiler(this);
 }
