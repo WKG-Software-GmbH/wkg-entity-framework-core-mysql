@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.MySql.Extensions;
-using Wkg.EntityFrameworkCore.MySql.ProcedureMapping;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
+using Wkg.Logging;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration.Reflection;
 
@@ -14,7 +14,7 @@ internal class ReflectiveProcedureConfigurationLoader : ReflectiveLoaderBase
     {
         AssertLoadOnce(builder, ref _reflectiveProcedureLoaderSentinel);
 
-        Console.WriteLine("ReflectiveProcedureConfigurationLoader is initializing.");
+        Log.WriteInfo($"{nameof(ReflectiveProcedureConfigurationLoader)} is initializing.");
 
         LoadAllProceduresInternal(typeof(IStoredProcedure),
             typeof(StoredProcedure<>),
@@ -23,7 +23,7 @@ internal class ReflectiveProcedureConfigurationLoader : ReflectiveLoaderBase
             nameof(ModelBuilderExtensions.LoadProcedure),
             builder);
 
-        Console.WriteLine("ReflectiveProcedureConfigurationLoader is exiting.");
+        Log.WriteInfo($"{nameof(ReflectiveProcedureConfigurationLoader)} is exiting.");
         return builder;
     }
 }
