@@ -7,17 +7,34 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 
+/// <summary>
+/// Represents an <see cref="IResultBuilder"/> for result entities of a stored procedure in a MySql database.
+/// </summary>
 public interface IMySqlResultBuilder : IResultBuilder
 {
 }
 
+/// <summary>
+/// The result entity builder for result type <typeparamref name="TResult"/> of a stored procedure in a MySql database.
+/// </summary>
+/// <typeparam name="TResult">The type of the result collection.</typeparam>
 public class MySqlResultBuilder<TResult> : ResultBuilder<TResult, MySqlDataReader, MySqlResultBuilder<TResult>>, IMySqlResultBuilder
     where TResult : class
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MySqlResultBuilder{TResult}"/> class.
+    /// </summary>
+    /// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used if an error is encountered.</param>
     public MySqlResultBuilder(IProcedureThrowHelper throwHelper) : base(throwHelper, typeof(TResult))
     {
     }
 
+    /// <summary>
+    /// Creates a new <see cref="MySqlResultColumnBuilder{TResult, TProperty}"/> to map a result column of the procedure to a property of the result entity.
+    /// </summary>
+    /// <typeparam name="TProperty">The type of the property to be mapped.</typeparam>
+    /// <param name="propertySelector">A lambda expression selecting the property to be mapped.</param>
+    /// <returns>A new <see cref="MySqlResultColumnBuilder{TResult, TProperty}"/> to configure the column.</returns>
     public MySqlResultColumnBuilder<TResult, TProperty> Column<TProperty>(Expression<Func<TResult, TProperty>> propertySelector)
     {
         MySqlResultColumnBuilder<TResult, TProperty> columnBuilder = new(propertySelector, ThrowHelper);
@@ -25,6 +42,7 @@ public class MySqlResultBuilder<TResult> : ResultBuilder<TResult, MySqlDataReade
         return columnBuilder;
     }
 
+    /// <inheritdoc/>
     protected override IResultCompiler<MySqlDataReader> Build() =>
         new MySqlResultCompiler(this);
 }
