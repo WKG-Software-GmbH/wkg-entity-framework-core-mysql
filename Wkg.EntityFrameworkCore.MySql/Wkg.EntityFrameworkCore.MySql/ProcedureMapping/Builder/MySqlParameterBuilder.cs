@@ -12,7 +12,7 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 /// <summary>
 /// Provides a simple API for configuring a parameter of a stored procedure in a MySQL database.
 /// </summary>
-public interface IMySqlParameterBuilder : IParameterBuilder
+internal interface IMySqlParameterBuilder : IParameterBuilder
 {
     /// <summary>
     /// The <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> associated with the parameter of this MySQL procedure.

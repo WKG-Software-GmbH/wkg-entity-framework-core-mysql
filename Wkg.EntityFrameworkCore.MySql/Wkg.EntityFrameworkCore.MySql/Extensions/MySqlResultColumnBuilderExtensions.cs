@@ -161,7 +161,7 @@ public static class MySqlResultColumnBuilderExtensions
     }
 
     /// <summary>
-    /// Instructs the compiler to retrieve the column value as a <see cref="int"/>.
+    /// Instructs the compiler to retrieve the column value as an <see cref="int"/>.
     /// </summary>
     /// <typeparam name="TResult">The type of the result entity.</typeparam>
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
