@@ -25,13 +25,13 @@ Then, install the package by adding the following package references to your pro
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Wkg.EntityFrameworkCore" Version="X.Y.Z" />
-    <PackageReference Include="Wkg.EntityFrameworkCore.MySql" Version="X.Y.Z" />
+    <PackageReference Include="Wkg.EntityFrameworkCore" Version="X.Y.ZA" />
+    <PackageReference Include="Wkg.EntityFrameworkCore.MySql" Version="X.Y.ZB" />
 </ItemGroup>
 ```
 
 > :warning: **Warning**
-> Replace `X.Y.Z` with the latest stable version available on the [nuget feed](https://baget.wkg.lan/packages/wkg.entityframeworkcore.mysql/latest), where **the major version must match the major version of your targeted .NET runtime**.
+> Replace `X.Y.Z[AB]` with the latest stable version available on the [nuget feed](https://baget.wkg.lan/packages/wkg.entityframeworkcore.mysql/latest), where **the major version must match the major version of your targeted .NET runtime**.
 
 > :warning: **Warning**
 > Ensure that the major and minor versions of the `Wkg.EntityFrameworkCore` and `Wkg.EntityFrameworkCore.MySql` packages match.
