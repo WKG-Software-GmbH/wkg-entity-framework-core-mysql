@@ -23,7 +23,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <returns>The builder instance for fluent configuration.</returns>
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, bool> GetAsBoolean<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
-        builder.HasDbType(MySqlDbType.Bit);
+        builder.HasDbType(MySqlDbType.Byte);
         builder.SetCompilerHint(MySqlResultColumnCompilerHint.Create((reader, name) => reader.GetBoolean(name)));
         return new(builder);
     }
