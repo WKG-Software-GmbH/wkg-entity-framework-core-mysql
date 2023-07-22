@@ -108,3 +108,4 @@ The `Wkg.EntityFrameworkCore.MySql` package provides the following additional fe
     ```
     
     In above example, only entities decorated with the `MySqlModelAttribute` will be discovered by RECAP. All other entities will be ignored.
+- **Automatic type inference** - RECAP's MySQL provider also supports automatic database type inference if `HasDbType()` is omitted when mapping PCO parameters. In these cases RECAP tries to determine the corresponding database type based on the CLR type of the I/O Container property being mapped. For a full list of supported types, please refer to the [`MySqlTypeMap` class](../Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql/MySqlTypeMap.cs).
