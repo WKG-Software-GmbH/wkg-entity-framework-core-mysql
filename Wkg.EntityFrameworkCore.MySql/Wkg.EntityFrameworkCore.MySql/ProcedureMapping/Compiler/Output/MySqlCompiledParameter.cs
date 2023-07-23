@@ -9,6 +9,13 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.Output;
 /// <summary>
 /// Represents a parameter that has been compiled for runtime use.
 /// </summary>
+/// <param name="Name">The name of the parameter.</param>
+/// <param name="MySqlDbType">The <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> of the parameter.</param>
+/// <param name="Direction">The <see cref="ParameterDirection"/> of the parameter.</param>
+/// <param name="IsOutput">Whether the parameter requires output binding.</param>
+/// <param name="Getter">The <see cref="PropertyGetter"/> that can be used to retrieve the value of the parameter from the input/output container object.</param>
+/// <param name="Setter">The <see cref="PropertySetter"/> that can be used to store the value of the parameter to the input/output container object.</param>
+/// <param name="Size">The size of the parameter.</param>
 public readonly record struct MySqlCompiledParameter
 (
     string Name,
@@ -41,5 +48,6 @@ public readonly record struct MySqlCompiledParameter
 
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Store(ref DbParameter param, object context) => Setter!.Invoke(context, param.Value!);
+    public void Store(ref DbParameter param, object context) => 
+        Setter!.Invoke(context, param.Value!);
 }

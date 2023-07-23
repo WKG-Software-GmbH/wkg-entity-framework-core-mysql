@@ -8,7 +8,7 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 /// Represents a type safe proxy builder for a corresponding <see cref="MySqlResultColumnBuilder{TResult, TProperty}"/>.
 /// </summary>
 /// <remarks>
-/// This class ensures that type read from the database is compatible with the conversion expression and the property type.
+/// This class ensures that the type read from the database is compatible with the conversion expression and the property type.
 /// </remarks>
 /// <typeparam name="TResult">The type of the result entity owning the column being configured.</typeparam>
 /// <typeparam name="TProperty">The type of the property being mapped.</typeparam>

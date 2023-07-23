@@ -9,7 +9,7 @@ internal class MySqlTypeMap : DbTypeMap<MySqlDbType>
         { typeof(int), MySqlDbType.Int32 },
         { typeof(long), MySqlDbType.Int64 },
         { typeof(string), MySqlDbType.VarChar },
-        { typeof(bool), MySqlDbType.Bit },
+        { typeof(bool), MySqlDbType.Byte }, // TINYINT(1)
         { typeof(DateTime), MySqlDbType.DateTime },
         { typeof(DateTimeOffset), MySqlDbType.DateTime },
         { typeof(TimeOnly), MySqlDbType.Time },

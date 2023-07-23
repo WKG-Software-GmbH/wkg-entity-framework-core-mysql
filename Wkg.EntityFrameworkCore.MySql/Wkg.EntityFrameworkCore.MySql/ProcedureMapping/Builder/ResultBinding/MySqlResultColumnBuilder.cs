@@ -13,10 +13,11 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 public interface IMySqlResultColumnBuilder : IResultColumnBuilder
 {
     /// <summary>
-    /// The <see cref="MySqlDbType"/> of the column, if configured.
+    /// The <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> of the column, if configured.
     /// </summary>
     MySqlDbType? MySqlDbType { get; }
 }
+
 /// <summary>
 /// The builder for a result column of stored procedure in a MySql database.
 /// </summary>
@@ -36,9 +37,9 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
     }
 
     /// <summary>
-    /// Sets the <see cref="MySqlDbType"/> of the column.
+    /// Sets the <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> of the column.
     /// </summary>
-    /// <param name="dbType">The <see cref="MySqlDbType"/> to set.</param>
+    /// <param name="dbType">The <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> to set.</param>
     /// <returns>The column builder for fluent configuration.</returns>
     public MySqlResultColumnBuilder<TResult, TProperty> HasDbType(MySqlDbType dbType)
     {

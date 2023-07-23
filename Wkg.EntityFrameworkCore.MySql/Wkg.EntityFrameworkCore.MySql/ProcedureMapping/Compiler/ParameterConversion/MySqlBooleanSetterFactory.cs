@@ -4,7 +4,7 @@ using System.Numerics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
-using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.AccessorGeneration;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.AccessorFactory;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
 using Wkg.Reflection;
 
@@ -47,14 +47,14 @@ internal readonly struct MySqlBooleanSetterFactory
     {
         MethodInfo converter = _convertToBool.MakeGenericMethod(typeof(T));
 
-        // get a "raw" setter that expects the context and an unboxed bool.
+        // get a "raw" setter that expects the I/O Container and an unboxed bool.
         PropertySetter<bool> directSetter = _accessorBuilder.BuildSetterDirect<bool>();
         ConstantExpression directSetterExpression = Expression.Constant(directSetter);
-        ParameterExpression context = Expression.Parameter(typeof(object), "context");
+        ParameterExpression io = Expression.Parameter(typeof(object), "I/O Container");
         ParameterExpression value = Expression.Parameter(typeof(object), "value");
         MethodCallExpression unboxedValue = Expression.Call(converter, value);
-        InvocationExpression setterExpression = Expression.Invoke(directSetterExpression, context, unboxedValue);
-        return Expression.Lambda<PropertySetter>(setterExpression, context, value).Compile();
+        InvocationExpression setterExpression = Expression.Invoke(directSetterExpression, io, unboxedValue);
+        return Expression.Lambda<PropertySetter>(setterExpression, io, value).Compile();
     }
 
     /// <summary>

@@ -11,5 +11,6 @@ internal class MySqlCompiledResult : CompiledResult<MySqlDataReader>
     {
     }
 
-    public override object ReadFrom(DbDataReader reader) => CompiledResultFactory.Invoke(Unsafe.As<MySqlDataReader>(reader));
+    public override object ReadFrom(DbDataReader reader) => 
+        CompiledResultFactory.Invoke(Unsafe.As<MySqlDataReader>(reader));
 }
