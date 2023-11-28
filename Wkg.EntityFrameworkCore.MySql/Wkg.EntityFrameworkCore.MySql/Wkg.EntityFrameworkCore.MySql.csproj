@@ -2,7 +2,7 @@
 
     <!--.NET build settings-->
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -37,8 +37,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wkg" Version="[7.3.13587,7.4.0-rc)" />
-        <PackageReference Include="Wkg.EntityFrameworkCore" Version="7.4.13598" />
+        <PackageReference Include="Wkg" Version="[8.0.14091-dev,8.1.0)" />
+        <PackageReference Include="Wkg.EntityFrameworkCore" Version="8.0.14097-dev" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.7" />
     </ItemGroup>
 

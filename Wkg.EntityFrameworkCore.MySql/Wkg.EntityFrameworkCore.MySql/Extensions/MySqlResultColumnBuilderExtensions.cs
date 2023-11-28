@@ -5,7 +5,7 @@ using Wkg.EntityFrameworkCore.Extensions;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
-using Wkg.Extensions.Common;
+using Wkg.Common.Extensions;
 
 namespace Wkg.EntityFrameworkCore.MySql.Extensions;
 

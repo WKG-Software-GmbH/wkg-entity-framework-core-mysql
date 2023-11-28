@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
-using Wkg.Extensions.Common;
+using Wkg.Common.Extensions;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 
