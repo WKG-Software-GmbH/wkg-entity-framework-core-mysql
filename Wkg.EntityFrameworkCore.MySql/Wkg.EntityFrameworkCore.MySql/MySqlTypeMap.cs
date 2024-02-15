@@ -1,10 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Collections.Frozen;
 
 namespace Wkg.EntityFrameworkCore.MySql;
 
 internal class MySqlTypeMap : DbTypeMap<MySqlDbType>
 {
-    protected override Dictionary<Type, MySqlDbType> TypeMap { get; } = new()
+    protected override FrozenDictionary<Type, MySqlDbType> TypeMap { get; } = FrozenDictionary.ToFrozenDictionary(new Dictionary<Type, MySqlDbType>
     {
         { typeof(int), MySqlDbType.Int32 },
         { typeof(long), MySqlDbType.Int64 },
@@ -28,5 +29,5 @@ internal class MySqlTypeMap : DbTypeMap<MySqlDbType>
         { typeof(byte), MySqlDbType.UByte },
         { typeof(char), MySqlDbType.VarChar },
         { typeof(char[]), MySqlDbType.VarChar },
-    };
+    });
 }

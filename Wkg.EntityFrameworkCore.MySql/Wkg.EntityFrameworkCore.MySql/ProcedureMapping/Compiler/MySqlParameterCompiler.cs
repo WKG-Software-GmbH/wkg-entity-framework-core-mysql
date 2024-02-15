@@ -6,12 +6,8 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler;
 
-internal class MySqlParameterCompiler : ParameterCompiler<IMySqlParameterBuilder>, IParameterCompiler<MySqlCompiledParameter>
+internal class MySqlParameterCompiler(IMySqlParameterBuilder builder) : ParameterCompiler<IMySqlParameterBuilder>(builder), IParameterCompiler<MySqlCompiledParameter>
 {
-    public MySqlParameterCompiler(IMySqlParameterBuilder builder) : base(builder)
-    {
-    }
-
     public MySqlCompiledParameter Compile()
     {
         IMySqlParameterBuilder b = Builder;
