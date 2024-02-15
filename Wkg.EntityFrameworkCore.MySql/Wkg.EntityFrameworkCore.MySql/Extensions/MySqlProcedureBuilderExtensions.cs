@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping;

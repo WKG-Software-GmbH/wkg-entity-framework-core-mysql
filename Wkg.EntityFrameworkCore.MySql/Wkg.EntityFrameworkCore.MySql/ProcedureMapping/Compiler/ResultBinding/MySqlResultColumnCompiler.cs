@@ -8,12 +8,9 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 
-internal class MySqlResultColumnCompiler : ResultColumnCompiler<IMySqlResultColumnBuilder, MySqlDataReader>, IResultColumnCompiler
+internal class MySqlResultColumnCompiler(IMySqlResultColumnBuilder builder) 
+    : ResultColumnCompiler<IMySqlResultColumnBuilder, MySqlDataReader>(builder), IResultColumnCompiler
 {
-    public MySqlResultColumnCompiler(IMySqlResultColumnBuilder builder) : base(builder)
-    {
-    }
-
     protected override Expression? GetColumnConverterOrDefault()
     {
         if (Builder.MySqlDbType is MySqlDbType.JSON 

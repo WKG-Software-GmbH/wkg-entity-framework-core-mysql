@@ -5,12 +5,9 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.Output;
 
-internal class MySqlCompiledResult : CompiledResult<MySqlDataReader>
+internal class MySqlCompiledResult(bool isCollection, CompiledResultFactory<MySqlDataReader> resultFactory) 
+    : CompiledResult<MySqlDataReader>(isCollection, resultFactory)
 {
-    public MySqlCompiledResult(bool isCollection, CompiledResultFactory<MySqlDataReader>  resultFactory) : base(isCollection, resultFactory)
-    {
-    }
-
     public override object ReadFrom(DbDataReader reader) => 
         CompiledResultFactory.Invoke(Unsafe.As<MySqlDataReader>(reader));
 }

@@ -18,16 +18,14 @@ public interface IMySqlResultBuilder : IResultBuilder
 /// The result entity builder for result type <typeparamref name="TResult"/> of a stored procedure in a MySql database.
 /// </summary>
 /// <typeparam name="TResult">The type of the result collection.</typeparam>
-public class MySqlResultBuilder<TResult> : ResultBuilder<TResult, MySqlDataReader, MySqlResultBuilder<TResult>>, IMySqlResultBuilder
+/// <remarks>
+/// Initializes a new instance of the <see cref="MySqlResultBuilder{TResult}"/> class.
+/// </remarks>
+/// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used if an error is encountered.</param>
+public class MySqlResultBuilder<TResult>(IProcedureThrowHelper throwHelper) 
+    : ResultBuilder<TResult, MySqlDataReader, MySqlResultBuilder<TResult>>(throwHelper, typeof(TResult)), IMySqlResultBuilder
     where TResult : class
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="MySqlResultBuilder{TResult}"/> class.
-    /// </summary>
-    /// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used if an error is encountered.</param>
-    public MySqlResultBuilder(IProcedureThrowHelper throwHelper) : base(throwHelper, typeof(TResult))
-    {
-    }
 
     /// <summary>
     /// Creates a new <see cref="MySqlResultColumnBuilder{TResult, TProperty}"/> to map a result column of the procedure to a property of the result entity.
