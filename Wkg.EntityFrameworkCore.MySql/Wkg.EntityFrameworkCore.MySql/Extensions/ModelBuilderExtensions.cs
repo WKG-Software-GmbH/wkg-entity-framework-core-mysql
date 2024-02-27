@@ -51,7 +51,21 @@ public static class ModelBuilderExtensions
     public static ModelBuilder LoadReflectiveProcedures(this ModelBuilder builder)
     {
         _ = builder ?? throw new ArgumentNullException(nameof(builder));
-        ReflectiveProcedureConfigurationLoader.LoadAll(builder);
+        ReflectiveProcedureConfigurationLoader.LoadAll(builder, null);
+        return builder;
+    }
+
+    /// <summary>
+    /// Reflectively loads and configures all stored procedures implementing <see cref="IMySqlStoredProcedure{TIOContainer}"/> and <see cref="IReflectiveProcedureConfiguration{TProcedure, TIOContainer}"/> from the calling assembly.
+    /// </summary>
+    /// <param name="builder">The <see cref="ModelBuilder"/> to use.</param>
+    /// <param name="targetAssemblies">The assemblies that contain definitions of any configured reflective models.</param>
+    /// <returns>The <see cref="ModelBuilder"/> instance.</returns>
+    /// <exception cref="ArgumentNullException">if <paramref name="builder"/> is <see langword="null"/>.</exception>
+    public static ModelBuilder LoadReflectiveProcedures(this ModelBuilder builder, string[] targetAssemblies)
+    {
+        _ = builder ?? throw new ArgumentNullException(nameof(builder));
+        ReflectiveProcedureConfigurationLoader.LoadAll(builder, targetAssemblies);
         return builder;
     }
 }
