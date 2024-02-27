@@ -10,7 +10,7 @@ internal class ReflectiveProcedureConfigurationLoader : ReflectiveLoaderBase
 {
     private static object? _reflectiveProcedureLoaderSentinel = new();
 
-    public static ModelBuilder LoadAll(ModelBuilder builder)
+    public static ModelBuilder LoadAll(ModelBuilder builder, string[]? targetAssemblies)
     {
         AssertLoadOnce(builder, ref _reflectiveProcedureLoaderSentinel);
 
@@ -21,7 +21,8 @@ internal class ReflectiveProcedureConfigurationLoader : ReflectiveLoaderBase
             typeof(IReflectiveProcedureConfiguration<,>),
             typeof(ModelBuilderExtensions),
             nameof(ModelBuilderExtensions.LoadProcedure),
-            builder);
+            builder,
+            targetAssemblies);
 
         Log.WriteInfo($"{nameof(ReflectiveProcedureConfigurationLoader)} is exiting.");
         return builder;
