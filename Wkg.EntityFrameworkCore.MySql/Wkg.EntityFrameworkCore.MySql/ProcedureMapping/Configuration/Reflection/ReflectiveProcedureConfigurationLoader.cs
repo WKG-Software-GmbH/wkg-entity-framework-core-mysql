@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.MySql.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
@@ -10,7 +11,7 @@ internal class ReflectiveProcedureConfigurationLoader : ReflectiveLoaderBase
 {
     private static object? _reflectiveProcedureLoaderSentinel = new();
 
-    public static ModelBuilder LoadAll(ModelBuilder builder, string[]? targetAssemblies)
+    public static ModelBuilder LoadAll(ModelBuilder builder, Assembly[]? targetAssemblies)
     {
         AssertLoadOnce(builder, ref _reflectiveProcedureLoaderSentinel);
 
