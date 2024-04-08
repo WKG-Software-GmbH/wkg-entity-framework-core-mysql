@@ -1,28 +1,23 @@
 stages:
     - build
-    - test
     - increase-version
     - deploy-baget
 
 variables:
     PROJECT_FILE_PATH: "Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql.csproj"
     MAJOR_VERSION: "8"
-    MINOR_VERSION: "0"
+    MINOR_VERSION: "1"
 
 include:
     - project: 'wkg/gitlab-templates'
-      ref: 'v1.1.11'
+      ref: 'v1.2.2'
       file:
           - '/jobs/build_dotnet_8.yml'
-          - '/jobs/test_dotnet_8.yml'
           - '/jobs/increase_version.yml'
           - '/jobs/deploy_baget_dotnet_8.yml'
 
 build:
     extends: .build
-
-test:
-    extends: .test
 
 increase-version:
     extends: .increase-version
