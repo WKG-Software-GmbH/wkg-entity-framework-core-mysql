@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Wkg.EntityFrameworkCore.DataTypes.Uuids;
+using Wkg.EntityFrameworkCore.DataTypes;
 
 namespace Ntb.Portal.Database.Compatibility.UuidSupport;
 
