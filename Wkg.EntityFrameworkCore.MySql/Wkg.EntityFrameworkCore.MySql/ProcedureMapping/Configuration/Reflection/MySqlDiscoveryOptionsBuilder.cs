@@ -5,5 +5,5 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration.Reflectio
 internal class MySqlDiscoveryOptionsBuilder : DiscoveryOptionsBuilder
 {
     public override IDiscoveryOptionsBuilder AddTargetDatabaseEngine<TTargetEngine>() => 
-        throw new NotSupportedException("Multiple database engine support is not available for stored procedures. The target database engine is automatically determined through the implemented interfaces.");
+        throw new NotSupportedException("Multiple database engine support is currently not available for stored procedures in this version of the library.");
 }

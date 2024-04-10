@@ -9,4 +9,4 @@ namespace Wkg.EntityFrameworkCore.MySql.Configuration;
 /// <remarks>
 /// The attribute on its own does not do anything. It must be passed as the generic type parameter to <see cref="IDiscoveryOptionsBuilder.AddTargetDatabaseEngine{TTargetEngine}()"/> to be effective.
 /// </remarks>
-public sealed class MySqlModelAttribute : DatabaseEngineModelAttribute;
+public class MySqlModelAttribute : DatabaseEngineModelAttribute;
