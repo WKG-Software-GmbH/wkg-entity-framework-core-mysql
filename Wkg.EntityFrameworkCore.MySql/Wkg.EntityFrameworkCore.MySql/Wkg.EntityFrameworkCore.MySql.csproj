@@ -24,7 +24,7 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageType>Dependency</PackageType>
         <PackageTags>
-            EntityFrameworkCore;ORM;MySQL
+            EntityFrameworkCore;ORM;MySQL;Stored Procedures
         </PackageTags>
     </PropertyGroup>
 
@@ -38,8 +38,8 @@
 
     <ItemGroup>
         <PackageReference Include="Wkg" Version="[8.1.15929,8.2.0)" />
-		<PackageReference Include="Wkg.EntityFrameworkCore" Version="[8.1.16464,8.2.0)" />
-        <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.2" />
+		<PackageReference Include="Wkg.EntityFrameworkCore" Version="[8.1.16542,8.2.0)" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.5" />
     </ItemGroup>
 
     <ItemGroup>
