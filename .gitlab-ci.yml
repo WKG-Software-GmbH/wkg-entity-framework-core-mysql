@@ -4,9 +4,10 @@ stages:
   - deploy-baget
 
 variables:
-    PROJECT_FILE_PATH: "Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql.csproj"
-    MAJOR_VERSION: "8"
-    MINOR_VERSION: "2"
+  PROJECT_DIRECTORY: "Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql"
+  PROJECT_FILE_PATH: "${PROJECT_DIRECTORY}/Wkg.EntityFrameworkCore.MySql.csproj"
+  MAJOR_VERSION: "8"
+  MINOR_VERSION: "2"
 
 include:
   - project: 'wkg/gitlab-templates'
@@ -29,4 +30,6 @@ increase-version:
     - /^diag-.*$/
 
 deploy:
-  extends: .deploy-baget        
+  extends: .deploy-baget
+  variables:
+    DOTNET_CI_VERSION_FILE: "${PROJECT_DIRECTORY}/WkgEntityFrameworkCoreMySql.cs"
