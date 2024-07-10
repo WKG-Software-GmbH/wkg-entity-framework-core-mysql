@@ -9,6 +9,10 @@
         <RestoreAdditionalProjectSources>
             https://baget.wkg.lan/v3/index.json
         </RestoreAdditionalProjectSources>
+		<!-- versioning is done by the CI -->
+		<!-- the following placeholders must not be changed -->
+		<VersionPrefix>0.0.0</VersionPrefix>
+		<VersionSuffix>CI-INJECTED</VersionSuffix>
     </PropertyGroup>
 
     <!--Nuget packaging-->
