@@ -37,8 +37,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wkg" Version="[8.1.15929,8.2.0)" />
-		<PackageReference Include="Wkg.EntityFrameworkCore" Version="[8.1.16542,8.2.0)" />
+        <PackageReference Include="Wkg" Version="[8.2.16652-rc,8.3.0)" />
+		<PackageReference Include="Wkg.EntityFrameworkCore" Version="[8.2.16655-rc,8.3.0)" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.5" />
     </ItemGroup>
 
