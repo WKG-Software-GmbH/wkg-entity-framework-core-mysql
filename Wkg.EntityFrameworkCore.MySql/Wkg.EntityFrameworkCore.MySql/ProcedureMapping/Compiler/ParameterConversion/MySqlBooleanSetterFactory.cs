@@ -12,7 +12,7 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ParameterConve
 
 internal readonly struct MySqlBooleanSetterFactory
 {
-    private static readonly MethodInfo _convertToBool = typeof(MySqlBooleanSetterFactory)
+    private static readonly MethodInfo s_convertToBool = typeof(MySqlBooleanSetterFactory)
         .GetMethod(nameof(ConvertToBool), 1, BindingFlags.NonPublic | BindingFlags.Static, null, TypeArray.Of<object>(), null)!;
 
     private readonly IMySqlParameterBuilder _builder;
@@ -45,7 +45,7 @@ internal readonly struct MySqlBooleanSetterFactory
 
     private PropertySetter CreateSetterInternal<T>() where T : struct, INumber<T>
     {
-        MethodInfo converter = _convertToBool.MakeGenericMethod(typeof(T));
+        MethodInfo converter = s_convertToBool.MakeGenericMethod(typeof(T));
 
         // get a "raw" setter that expects the I/O Container and an unboxed bool.
         PropertySetter<bool> directSetter = _accessorBuilder.BuildSetterDirect<bool>();
