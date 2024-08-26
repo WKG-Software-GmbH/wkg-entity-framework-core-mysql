@@ -9,11 +9,11 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration.Reflectio
 
 internal class ReflectiveProcedureConfigurationLoader : ReflectiveLoaderBase
 {
-    private static object? _reflectiveProcedureLoaderSentinel = new();
+    private static object? s_reflectiveProcedureLoaderSentinel = new();
 
     public static ModelBuilder LoadAll(ModelBuilder builder, Assembly[]? targetAssemblies)
     {
-        AssertLoadOnce(builder, ref _reflectiveProcedureLoaderSentinel);
+        AssertLoadOnce(builder, ref s_reflectiveProcedureLoaderSentinel);
 
         Log.WriteInfo($"{nameof(ReflectiveProcedureConfigurationLoader)} is initializing.");
 

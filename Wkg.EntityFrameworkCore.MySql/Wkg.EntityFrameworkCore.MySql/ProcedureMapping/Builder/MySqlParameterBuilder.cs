@@ -34,7 +34,7 @@ public class MySqlParameterBuilder<TIOContainer, TParameter>
     IMySqlParameterBuilder
     where TIOContainer : class
 {
-    private static readonly MySqlTypeMap _typeMap = new();
+    private static readonly MySqlTypeMap s_typeMap = new();
 
     private MySqlDbType? MySqlDbType { get; set; } = null;
 
@@ -47,7 +47,7 @@ public class MySqlParameterBuilder<TIOContainer, TParameter>
     /// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used for throwing exceptions.</param>
     public MySqlParameterBuilder(Expression<Func<TIOContainer, TParameter>> parameterSelector, IProcedureThrowHelper throwHelper) : base(parameterSelector, throwHelper)
     {
-        MySqlDbType = _typeMap.GetDbTypeOrDefault(Context.PropertyInfo.PropertyType);
+        MySqlDbType = s_typeMap.GetDbTypeOrDefault(Context.PropertyInfo.PropertyType);
     }
 
     /// <summary>

@@ -26,7 +26,7 @@ public interface IMySqlResultColumnBuilder : IResultColumnBuilder
 public class MySqlResultColumnBuilder<TResult, TProperty>
     : ResultColumnBuilder<TResult, TProperty, MySqlResultColumnBuilder<TResult, TProperty>>, IMySqlResultColumnBuilder
 {
-    private static readonly MySqlTypeMap _typeMap = new();
+    private static readonly MySqlTypeMap s_typeMap = new();
 
     private MySqlDbType? MySqlDbType { get; set; } = null;
 
@@ -55,7 +55,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
     public override MySqlResultColumnBuilder<TResult, TProperty> RequiresConversion<TColumn>(Expression<Func<TColumn, TProperty>> conversion)
     {
         ParameterExpression columnExpression = conversion.Parameters[0];
-        MySqlDbType = _typeMap.GetDbTypeOrDefault(columnExpression.Type);
+        MySqlDbType = s_typeMap.GetDbTypeOrDefault(columnExpression.Type);
 
         return base.RequiresConversion(conversion);
     }
@@ -70,7 +70,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
 
     /// <inheritdoc/>
     protected override void AttemptAutoConfiguration() =>
-        MySqlDbType ??= _typeMap.GetDbTypeOrDefault(Context.ResultProperty.PropertyType);
+        MySqlDbType ??= s_typeMap.GetDbTypeOrDefault(Context.ResultProperty.PropertyType);
 
     internal void SetCompilerHint(MySqlResultColumnCompilerHint hint) => 
         CompilerHint = hint;
