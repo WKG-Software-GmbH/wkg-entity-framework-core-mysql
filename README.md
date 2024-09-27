@@ -1,6 +1,6 @@
 # WKG Entity Framework Core - MySQL Bindings
 
-[![NuGet version (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.MySql.svg?style=flat-square)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.MySql/)
+[![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.MySql.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore.MySql)![NuGet downloads (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore.MySql?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.MySql/)
 
 ---
 
@@ -13,7 +13,7 @@ As part of our commitment to open-source software, we are making this library [a
 
 ## Installation
 
-Then, Install the `Wkg.EntityFrameworkCore.MySql` package by adding the following package references to your project file:
+Install the `Wkg.EntityFrameworkCore.MySql` package by adding the following package references to your project file:
 
 ```xml
 <ItemGroup>
@@ -25,11 +25,15 @@ Then, Install the `Wkg.EntityFrameworkCore.MySql` package by adding the followin
 > :warning: **Warning**
 > Replace `X.Y.Z[AB]` with the latest stable version available on the [nuget feed](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.MySql/), where **the major version must match the major version of your targeted .NET runtime**.
 
+You can find the latest stable version of `Wkg.EntityFrameworkCore` below:
+
+[![GitHub (Wkg.EntityFrameworkCore)](https://img.shields.io/badge/GitHub-WKG_Entity_Framework_Core-blue?style=flat-square&logo=github)](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core)[![NuGet version (Wkg.EntityFrameworkCore)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.svg?style=flat-square&logo=nuget&label=&color=555555)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore/)
+
 > :warning: **Warning**
 > Ensure that the major and minor versions of the `Wkg.EntityFrameworkCore` and `Wkg.EntityFrameworkCore.MySql` packages match.
 
 ## Getting Started
 
-The *WKG Entity Framework Core - MySQL Bindings* library provides the RECAP bindings for MySQL. For more information on how to use the RECAP framework, please refer to the [WKG Entity Framework Core](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core) documentation.
+The *WKG Entity Framework Core - MySQL Bindings* library provides the RECAP bindings for MySQL. For more information on how to use the RECAP framework, please refer to the [WKG Entity Framework Core](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core/blob/main/docs/documentation.md) documentation.
 
 For more information on features specific to the MySQL bindings, please refer to the [WKG Entity Framework Core - MySQL Bindings](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-mysql/blob/main/docs/documentation.md) documentation.

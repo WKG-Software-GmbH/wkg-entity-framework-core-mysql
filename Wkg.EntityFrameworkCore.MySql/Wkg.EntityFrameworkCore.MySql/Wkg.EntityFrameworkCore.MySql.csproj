@@ -20,7 +20,7 @@
         <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-mysql</RepositoryUrl>
         <PackageProjectUrl>https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-mysql</PackageProjectUrl>
-        <Description>Internal WKG library containing the RECAP bindings for MySQL.</Description>
+        <Description>Wkg.EntityFrameworkCore.MySql provides RECAP bindings for MySQL, enabling procedure mapping support in the RECAP framework for MySQL databases. Requires Wkg.EntityFrameworkCore.</Description>
         <Company>WKG Software GmbH</Company>
         <Authors>WKG Software GmbH</Authors>
         <Copyright>Copyright (c) WKG Software GmbH 2024</Copyright>
@@ -41,8 +41,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wkg" Version="[8.2.17542,8.3)" />
-        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[8.2.17545,8.3.0)" />
+        <PackageReference Include="Wkg" Version="[8.2.17550,8.3)" />
+        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[8.2.17555,8.3.0)" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="[8.0.5,8.1.0)" />
     </ItemGroup>
 
