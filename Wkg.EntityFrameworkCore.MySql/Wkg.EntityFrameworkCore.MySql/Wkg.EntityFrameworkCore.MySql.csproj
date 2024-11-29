@@ -42,7 +42,7 @@
 
     <ItemGroup>
         <PackageReference Include="Wkg" Version="[9.0.17748,9.1)" />
-        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[9.0.17809-dev,9.1)" />
+        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[9.0.17812,9.1)" />
         <PackageReference Include="MySql.Data" Version="[9.1.0,10.0)" />
 		<!-- Temporary explicit dependency due to security vulnerability in transitive 8.0.4 dependency of MySql.Data -->
 		<!-- TODO: Remove this package reference once MySql.Data updates to a fixed version -->
