@@ -10,9 +10,7 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 /// <summary>
 /// Represents an <see cref="IResultBuilder"/> for result entities of a stored procedure in a MySql database.
 /// </summary>
-public interface IMySqlResultBuilder : IResultBuilder
-{
-}
+public interface IMySqlResultBuilder : IResultBuilder;
 
 /// <summary>
 /// The result entity builder for result type <typeparamref name="TResult"/> of a stored procedure in a MySql database.

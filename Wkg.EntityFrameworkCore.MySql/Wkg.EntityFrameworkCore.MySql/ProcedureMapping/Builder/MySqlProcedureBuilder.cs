@@ -13,9 +13,7 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 /// <summary>
 /// Provides a simple API for configuring a stored procedure in a MySql database.
 /// </summary>
-internal interface IMySqlProcedureBuilder : IProcedureBuilder
-{
-}
+internal interface IMySqlProcedureBuilder : IProcedureBuilder;
 
 /// <summary>
 /// Provides a simple API for configuring a stored procedure in a MySql database.
@@ -33,9 +31,7 @@ public class MySqlProcedureBuilder<TProcedure, TIOContainer>
     where TProcedure : StoredProcedure<TIOContainer>, IMySqlStoredProcedure<TIOContainer>
     where TIOContainer : class
 {
-    internal MySqlProcedureBuilder()
-    {
-    }
+    internal MySqlProcedureBuilder() => Pass();
 
     /// <summary>
     /// Creates a new <see cref="MySqlParameterBuilder{TIOContainer, TParameter}"/> instance for configuring a parameter of this MySQL procedure.
@@ -67,8 +63,10 @@ public class MySqlProcedureBuilder<TProcedure, TIOContainer>
     {
         base.AssertIsValid();
 
-        string? name = null;
-        if (IsFunctionValue && (name = ParameterBuilders.Where(param => param.ParameterDirection is ParameterDirection.Output or ParameterDirection.InputOutput).Select(param => param.ParameterName).FirstOrDefault()) is not null)
+        if (IsFunctionValue && ParameterBuilders
+            .Where(param => param.ParameterDirection is ParameterDirection.Output or ParameterDirection.InputOutput)
+            .Select(param => param.ParameterName)
+            .FirstOrDefault() is string name)
         {
             ThrowHelper.Throw<ArgumentException>("MySql functions cannot have output parameters!", name);
         }

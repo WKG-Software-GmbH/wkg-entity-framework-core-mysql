@@ -32,9 +32,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
 
     MySqlDbType? IMySqlResultColumnBuilder.MySqlDbType => MySqlDbType;
 
-    internal MySqlResultColumnBuilder(Expression<Func<TResult, TProperty>> columnSelector, IResultThrowHelper throwHelper) : base(columnSelector, throwHelper)
-    {
-    }
+    internal MySqlResultColumnBuilder(Expression<Func<TResult, TProperty>> columnSelector, IResultThrowHelper throwHelper) : base(columnSelector, throwHelper) => Pass();
 
     /// <summary>
     /// Sets the <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> of the column.
@@ -69,8 +67,15 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
     }
 
     /// <inheritdoc/>
-    protected override void AttemptAutoConfiguration() =>
-        MySqlDbType ??= s_typeMap.GetDbTypeOrDefault(Context.ResultProperty.PropertyType);
+    protected override void AttemptAutoConfiguration()
+    {
+        if (MySqlDbType is null)
+        {
+            Context.ThrowHelper.Warn(
+                "No DB Type was specified for the column. Attempting to infer the DB Type from the property type. To reduce the risk of bugs and to remove this warning, specify the DB Type of the column explicitly.");
+            MySqlDbType = s_typeMap.GetDbTypeOrDefault(Context.ResultProperty.PropertyType);
+        }
+    }
 
     internal void SetCompilerHint(MySqlResultColumnCompilerHint hint) => 
         CompilerHint = hint;
