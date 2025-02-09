@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
@@ -41,24 +41,10 @@ public static class ModelBuilderExtensions
     /// <returns>A <see cref="MySqlProcedureBuilder{TProcedure,TIOContainer}"/> instance for the specified <typeparamref name="TProcedure"/> stored procedure with the specified <typeparamref name="TIOContainer"/> input/output container to be used for fluent configuration.</returns>
     public static MySqlProcedureBuilder<TProcedure, TIOContainer> Procedure<TProcedure, TIOContainer>(this ModelBuilder _)
         where TProcedure : StoredProcedure<TIOContainer>, IMySqlStoredProcedure<TIOContainer>
-        where TIOContainer : class =>
-            new();
+        where TIOContainer : class => new();
 
     /// <summary>
-    /// Reflectively loads and configures all stored procedures implementing <see cref="IMySqlStoredProcedure{TIOContainer}"/> and <see cref="IReflectiveProcedureConfiguration{TProcedure, TIOContainer}"/> from the calling assembly.
-    /// </summary>
-    /// <param name="builder">The <see cref="ModelBuilder"/> to use.</param>
-    /// <returns>The <see cref="ModelBuilder"/> instance.</returns>
-    /// <exception cref="ArgumentNullException">if <paramref name="builder"/> is <see langword="null"/>.</exception>
-    public static ModelBuilder LoadReflectiveProcedures(this ModelBuilder builder)
-    {
-        _ = builder ?? throw new ArgumentNullException(nameof(builder));
-        ReflectiveProcedureConfigurationLoader.LoadAll(builder, null);
-        return builder;
-    }
-
-    /// <summary>
-    /// Reflectively loads and configures all stored procedures implementing <see cref="IMySqlStoredProcedure{TIOContainer}"/> and <see cref="IReflectiveProcedureConfiguration{TProcedure, TIOContainer}"/> from the calling assembly.
+    /// Reflectively loads and configures all stored procedures implementing <see cref="IMySqlStoredProcedure{TIOContainer}"/> and <see cref="IReflectiveProcedureConfiguration{TProcedure, TIOContainer}"/> from the configured target assemblies.
     /// </summary>
     /// <param name="builder">The <see cref="ModelBuilder"/> to use.</param>
     /// <param name="configureOptions">The action to configure the options for the reflective procedure discovery.</param>
@@ -66,15 +52,13 @@ public static class ModelBuilderExtensions
     /// <exception cref="ArgumentNullException">if <paramref name="builder"/> is <see langword="null"/>.</exception>
     public static ModelBuilder LoadReflectiveProcedures(this ModelBuilder builder, Action<IDiscoveryOptionsBuilder>? configureOptions = null)
     {
-        _ = builder ?? throw new ArgumentNullException(nameof(builder));
-        Assembly[]? assemblies = null;
-        if (configureOptions is not null)
-        {
-            MySqlDiscoveryOptionsBuilder optionsBuilder = new();
-            configureOptions(optionsBuilder);
-            assemblies = optionsBuilder.Build().TargetAssemblies;
-        }
-        ReflectiveProcedureConfigurationLoader.LoadAll(builder, assemblies);
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+        MySqlDiscoveryOptionsBuilder optionsBuilder = new();
+        configureOptions?.Invoke(optionsBuilder);
+        DiscoveryOptions discoveryOptions = optionsBuilder.Build();
+        IReflectiveProcedureDiscoveryContext discoveryContext = new MySqlProcedureDiscoveryContext();
+        discoveryContext.AddLoader(new MySqlReflectiveProcedureLoader());
+        discoveryContext.Discover(builder, discoveryOptions);
         return builder;
     }
 }
